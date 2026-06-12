@@ -216,3 +216,14 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Banking Fraud Detection System
+
+# Raw datasets
+data/raw/*.csv
+
+# SQLite databases
+database/*.db
+
+# Generated outputs
+output/
