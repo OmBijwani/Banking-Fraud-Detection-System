@@ -227,3 +227,11 @@ database/*.db
 
 # Generated outputs
 output/
+
+venv/
+__pycache__/
+database/banking.db
+output/
+
+# Dataset
+data/transactions.csv
