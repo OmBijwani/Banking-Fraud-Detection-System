@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Banking Fraud Detection Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome 6 CDN for modern icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- CSS-Only Router: Hidden Navigation Inputs -->
+  <input type="radio" name="nav-tabs" id="tab-dashboard" checked>
+  <input type="radio" name="nav-tabs" id="tab-dataset">
+  <input type="radio" name="nav-tabs" id="tab-analytics">
+  <input type="radio" name="nav-tabs" id="tab-detection">
+  <input type="radio" name="nav-tabs" id="tab-reports">
+  <input type="radio" name="nav-tabs" id="tab-visualizations">
+  <input type="radio" name="nav-tabs" id="tab-workflow">
+  <input type="radio" name="nav-tabs" id="tab-about">
+
+  <!-- Mobile Drawer Toggle Checkbox -->
+  <input type="checkbox" id="sidebar-toggle">
+
+  <div class="app-container">
+    
+    <!-- Sidebar Navigation overlay on mobile -->
+    <label for="sidebar-toggle" class="sidebar-overlay"></label>
+
+    <!-- Fixed Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="sidebar-brand-icon">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <div class="sidebar-brand-name">
+          FRAUDRECON
+          <span>SECURE BANKING</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-menu">
+        <div class="sidebar-menu-title">Control Center</div>
+        
+        <label for="tab-dashboard" class="nav-item">
+          <i class="fa-solid fa-gauge-high"></i>
+          <span>Dashboard</span>
+        </label>
+        
+        <label for="tab-dataset" class="nav-item">
+          <i class="fa-solid fa-database"></i>
+          <span>Dataset Overview</span>
+        </label>
+
+        <label for="tab-analytics" class="nav-item">
+          <i class="fa-solid fa-chart-simple"></i>
+          <span>Analytics</span>
+        </label>
+
+        <div class="sidebar-menu-title">Security & Analysis</div>
+
+        <label for="tab-detection" class="nav-item">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <span>Fraud Detection</span>
+        </label>
+
+        <label for="tab-reports" class="nav-item">
+          <i class="fa-solid fa-file-invoice"></i>
+          <span>Reports</span>
+        </label>
+
+        <label for="tab-visualizations" class="nav-item">
+          <i class="fa-solid fa-chart-line"></i>
+          <span>Visualizations</span>
+        </label>
+
+        <div class="sidebar-menu-title">Developer Info</div>
+
+        <label for="tab-workflow" class="nav-item">
+          <i class="fa-solid fa-diagram-project"></i>
+          <span>Workflow</span>
+        </label>
+
+        <label for="tab-about" class="nav-item">
+          <i class="fa-solid fa-circle-info"></i>
+          <span>About Project</span>
+        </label>
+      </nav>
+
+      <div class="sidebar-footer">
+        <p>System Version: 1.0.0</p>
+        <p>College Presentation Edition</p>
+      </div>
+    </aside>
+
+    <!-- Main Content Wrapper -->
+    <main class="main-content">
+      
+      <!-- Top Header Navbar -->
+      <header class="header">
+        <div class="header-left">
+          <!-- Mobile burger menu label -->
+          <label for="sidebar-toggle" class="sidebar-toggle-btn">
+            <i class="fa-solid fa-bars"></i>
+          </label>
+          <div class="header-title-container">
+            <h1>Banking Fraud Detection System</h1>
+            <p>Static monitoring console & Python workflow visualization</p>
+          </div>
+        </div>
+
+        <div class="header-center">
+          <div class="search-bar">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="dashboard-search-input" placeholder="Search accounts or transaction types..." autocomplete="off">
+          </div>
+        </div>
+
+        <div class="header-right">
+          <div class="header-icon-btn">
+            <i class="fa-regular fa-bell"></i>
+            <span class="notification-badge"></span>
+          </div>
+
+          <div class="user-profile">
+            <div class="user-avatar">RA</div>
+            <div class="user-info">
+              <span class="user-name">Risk Analyst</span>
+              <span class="user-role">Administrator</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Content Body containing the different sections (controlled by CSS) -->
+      <div class="content-body">
+        
+        <!-- SECTION 1: DASHBOARD -->
+        <section id="section-dashboard" class="tab-content">
+          <div class="content-header">
+            <div class="content-header-title">
+              <span class="section-tag">Overview</span>
+              <h2>Dashboard Status</h2>
+              <p>Key analytics metrics aggregated from the Paysim synthetic transaction database.</p>
+            </div>
+          </div>
+
+          <!-- 6 Stat Cards Grid -->
+          <div class="grid-6x">
+            
+            <!-- Card 1: Total Transactions -->
+            <div class="card">
+              <div class="stat-card">
+                <div class="stat-icon-wrap color-primary">
+                  <i class="fa-solid fa-money-bill-transfer"></i>
+                </div>
+                <div class="stat-info">
+                  <div class="stat-label">Total Transactions</div>
+                  <div class="stat-value">6,362,620</div>
+                  <div class="stat-desc">
+                    <span class="trend-badge trend-neutral"><i class="fa-solid fa-database"></i> csv load</span>
+                    <span>Dataset total size</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2: Total Volume -->
+            <div class="card">
+              <div class="stat-card">
+                <div class="stat-icon-wrap color-secondary">
+                  <i class="fa-solid fa-wallet"></i>
+                </div>
+                <div class="stat-info">
+                  <div class="stat-label">Total Amount</div>
+                  <div class="stat-value" style="font-size: 1.45rem;">$46,114.12 M</div>
+                  <div class="stat-desc">
+                    <span class="trend-badge trend-up"><i class="fa-solid fa-dollar-sign"></i> processed</span>
+                    <span>Total USD processed</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3: Avg Transaction -->
+            <div class="card">
+              <div class="stat-card">
+                <div class="stat-icon-wrap color-success">
+                  <i class="fa-solid fa-calculator"></i>
+                </div>
+                <div class="stat-info">
+                  <div class="stat-label">Average Amount</div>
+                  <div class="stat-value">$7,247.90</div>
+                  <div class="stat-desc">
+                    <span class="trend-badge trend-neutral"><i class="fa-solid fa-chart-line"></i> mean</span>
+                    <span>Per processed transfer</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 4: Fraud Transactions -->
+            <div class="card" style="border-left: 4px solid var(--danger-color);">
+              <div class="stat-card">
+                <div class="stat-icon-wrap color-danger">
+                  <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <div class="stat-info">
+                  <div class="stat-label">Fraud Transactions</div>
+                  <div class="stat-value" style="color: var(--danger-color);">8,213</div>
+                  <div class="stat-desc">
+                    <span class="trend-badge trend-down"><i class="fa-solid fa-ban"></i> flagged</span>
+                    <span>Anomalous items</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 5: Fraud % -->
+            <div class="card">
+              <div class="stat-card">
+                <div class="stat-icon-wrap color-warning">
+                  <i class="fa-solid fa-percent"></i>
+                </div>
+                <div class="stat-info">
+                  <div class="stat-label">Fraud Percentage</div>
+                  <div class="stat-value">0.13%</div>
+                  <div class="stat-desc">
+                    <span class="trend-badge trend-neutral">low ratio</span>
+                    <span>Industry standard benchmark</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 6: Common Fraud Type -->
+            <div class="card">
+              <div class="stat-card">
+                <div class="stat-icon-wrap color-primary">
+                  <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                </div>
+                <div class="stat-info">
+                  <div class="stat-label">Common Fraud Type</div>
+                  <div class="stat-value" style="font-size: 1.5rem;">TRANSFER</div>
+                  <div class="stat-desc">
+                    <span class="trend-badge trend-down">high risk</span>
+                    <span>CASH_OUT is secondary</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Dashboard Double Grid (Rules overview + short table preview) -->
+          <div class="grid-2x">
+            <div class="card">
+              <div class="card-header-flex">
+                <h3 class="card-title"><i class="fa-solid fa-shield-halved"></i> Active Detection Rules</h3>
+                <label for="tab-detection" style="font-size: 0.8rem; color: var(--secondary-color); cursor: pointer; font-weight: 600;">Manage Rules <i class="fa-solid fa-arrow-right"></i></label>
+              </div>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px;">
+                The database triggers alert warnings automatically when transaction records hit these preset detection thresholds:
+              </p>
+              
+              <div class="workflow-timeline" style="padding-left: 5px;">
+                <div class="workflow-step" style="gap: 15px;">
+                  <div class="workflow-num" style="width:28px; height:28px; border-color: var(--danger-color); font-size: 0.75rem;">1</div>
+                  <div class="workflow-card" style="padding: 10px 15px; box-shadow:none;">
+                    <div class="workflow-card-left">
+                      <div class="workflow-card-text">
+                        <h4 style="font-size: 0.88rem;">Rule 1: High Transaction Value Limit</h4>
+                        <code style="font-size: 0.72rem; padding: 2px 6px;" class="workflow-tech-badge">amount > 200000</code>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="workflow-step" style="gap: 15px;">
+                  <div class="workflow-num" style="width:28px; height:28px; border-color: var(--warning-color); font-size: 0.75rem;">2</div>
+                  <div class="workflow-card" style="padding: 10px 15px; box-shadow:none;">
+                    <div class="workflow-card-left">
+                      <div class="workflow-card-text">
+                        <h4 style="font-size: 0.88rem;">Rule 2: Zero Starting Origin Balance</h4>
+                        <code style="font-size: 0.72rem; padding: 2px 6px;" class="workflow-tech-badge">oldbalanceOrg == 0</code>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header-flex">
+                <h3 class="card-title"><i class="fa-solid fa-bell"></i> Critical Alerts</h3>
+                <label for="tab-detection" style="font-size: 0.8rem; color: var(--secondary-color); cursor: pointer; font-weight: 600;">View Table <i class="fa-solid fa-arrow-right"></i></label>
+              </div>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">
+                Latest high-risk transactions intercepted by the system:
+              </p>
+              <div class="table-responsive">
+                <table class="custom-table">
+                  <thead>
+                    <tr>
+                      <th>Type</th>
+                      <th>Amount</th>
+                      <th>Origin Acc</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="row-fraud">
+                      <td><span class="table-badge badge-type">TRANSFER</span></td>
+                      <td class="td-amount">$2,500,000.00</td>
+                      <td class="td-mono">C1093848122</td>
+                      <td><span class="table-badge badge-fraud"><i class="fa-solid fa-circle-exclamation"></i> Fraud</span></td>
+                    </tr>
+                    <tr class="row-fraud">
+                      <td><span class="table-badge badge-type">CASH_OUT</span></td>
+                      <td class="td-amount">$2,500,000.00</td>
+                      <td class="td-mono">C1827394857</td>
+                      <td><span class="table-badge badge-fraud"><i class="fa-solid fa-circle-exclamation"></i> Fraud</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 2: DATASET OVERVIEW -->
+        <section id="section-dataset" class="tab-content">
+          <div class="content-header">
+            <div class="content-header-title">
+              <span class="section-tag">Database</span>
+              <h2>Dataset Overview</h2>
+              <p>Details and schema analysis of the banking transactions source file.</p>
+            </div>
+          </div>
+
+          <div class="grid-3x">
+            <!-- Metadata Info -->
+            <div class="card" style="grid-column: span 1;">
+              <h3 class="card-title" style="margin-bottom: 15px;"><i class="fa-solid fa-file-csv"></i> Source CSV Metadata</h3>
+              <div class="dataset-meta-grid">
+                <div class="dataset-meta-item">
+                  <div class="dataset-meta-label">File Name</div>
+                  <div class="dataset-meta-value" style="font-size: 0.95rem; color: var(--secondary-color);">transactions.csv</div>
+                </div>
+                <div class="dataset-meta-item">
+                  <div class="dataset-meta-label">File Format</div>
+                  <div class="dataset-meta-value">CSV Plaintext</div>
+                </div>
+                <div class="dataset-meta-item">
+                  <div class="dataset-meta-label">Total Rows</div>
+                  <div class="dataset-meta-value">6,362,620</div>
+                </div>
+                <div class="dataset-meta-item">
+                  <div class="dataset-meta-label">Total Columns</div>
+                  <div class="dataset-meta-value">10 Columns</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Column Badges -->
+            <div class="card" style="grid-column: span 2;">
+              <h3 class="card-title" style="margin-bottom: 10px;"><i class="fa-solid fa-tags"></i> Dataset Columns / Attributes</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">
+                The dataset holds financial transaction features that are mapped during SQLite loading:
+              </p>
+              <div class="badge-container">
+                <span class="badge-item">step <small>(Int - Hour of simulation)</small></span>
+                <span class="badge-item">type <small>(Categorical - Transaction type)</small></span>
+                <span class="badge-item">amount <small>(Numeric - Tx amount in USD)</small></span>
+                <span class="badge-item">nameOrig <small>(String - Sender ID)</small></span>
+                <span class="badge-item">oldbalanceOrg <small>(Numeric - Starting sender balance)</small></span>
+                <span class="badge-item">newbalanceOrig <small>(Numeric - Ending sender balance)</small></span>
+                <span class="badge-item">nameDest <small>(String - Recipient ID)</small></span>
+                <span class="badge-item">oldbalanceDest <small>(Numeric - Starting recipient balance)</small></span>
+                <span class="badge-item">newbalanceDest <small>(Numeric - Ending recipient balance)</small></span>
+                <span class="badge-item target-badge">isFraud <small>(Boolean - Fraud tag [0/1])</small></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sample Record Table Preview -->
+          <div class="card">
+            <h3 class="card-title" style="margin-bottom: 15px;"><i class="fa-solid fa-list"></i> Preview (First 5 Rows)</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">
+              A representative subset of transactions from the source CSV file:
+            </p>
+            <div class="table-responsive">
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>step</th>
+                    <th>type</th>
+                    <th>amount</th>
+                    <th>nameOrig</th>
+                    <th>oldbalanceOrg</th>
+                    <th>newbalanceOrig</th>
+                    <th>nameDest</th>
+                    <th>oldbalanceDest</th>
+                    <th>newbalanceDest</th>
+                    <th>isFraud</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="td-mono">1</td>
+                    <td><span class="table-badge badge-type">PAYMENT</span></td>
+                    <td class="td-amount">$9,839.64</td>
+                    <td class="td-mono">C1231006815</td>
+                    <td class="td-amount">$170,136.00</td>
+                    <td class="td-amount">$160,296.36</td>
+                    <td class="td-mono">M1979787155</td>
+                    <td class="td-amount">$0.00</td>
+                    <td class="td-amount">$0.00</td>
+                    <td><span class="table-badge badge-normal">0</span></td>
+                  </tr>
+                  <tr>
+                    <td class="td-mono">1</td>
+                    <td><span class="table-badge badge-type">PAYMENT</span></td>
+                    <td class="td-amount">$1,864.28</td>
+                    <td class="td-mono">C1666544295</td>
+                    <td class="td-amount">$21,249.00</td>
+                    <td class="td-amount">$19,384.72</td>
+                    <td class="td-mono">M2044282225</td>
+                    <td class="td-amount">$0.00</td>
+                    <td class="td-amount">$0.00</td>
+                    <td><span class="table-badge badge-normal">0</span></td>
+                  </tr>
+                  <tr class="row-fraud">
+                    <td class="td-mono">1</td>
+                    <td><span class="table-badge badge-type">TRANSFER</span></td>
+                    <td class="td-amount">$181.00</td>
+                    <td class="td-mono">C1305486145</td>
+                    <td class="td-amount">$181.00</td>
+                    <td class="td-amount">$0.00</td>
+                    <td class="td-mono">C553264065</td>
+                    <td class="td-amount">$0.00</td>
+                    <td class="td-amount">$0.00</td>
+                    <td><span class="table-badge badge-fraud"><i class="fa-solid fa-circle-exclamation"></i> 1</span></td>
+                  </tr>
+                  <tr class="row-fraud">
+                    <td class="td-mono">1</td>
+                    <td><span class="table-badge badge-type">CASH_OUT</span></td>
+                    <td class="td-amount">$181.00</td>
+                    <td class="td-mono">C840083671</td>
+                    <td class="td-amount">$181.00</td>
+                    <td class="td-amount">$0.00</td>
+                    <td class="td-mono">C38997010</td>
+                    <td class="td-amount">$21,182.00</td>
+                    <td class="td-amount">$0.00</td>
+                    <td><span class="table-badge badge-fraud"><i class="fa-solid fa-circle-exclamation"></i> 1</span></td>
+                  </tr>
+                  <tr>
+                    <td class="td-mono">1</td>
+                    <td><span class="table-badge badge-type">PAYMENT</span></td>
+                    <td class="td-amount">$11,668.14</td>
+                    <td class="td-mono">C2048537720</td>
+                    <td class="td-amount">$41,554.00</td>
+                    <td class="td-amount">$29,885.86</td>
+                    <td class="td-mono">M1230701703</td>
+                    <td class="td-amount">$0.00</td>
+                    <td class="td-amount">$0.00</td>
+                    <td><span class="table-badge badge-normal">0</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 3: ANALYTICS -->
+        <section id="section-analytics" class="tab-content">
+          <div class="content-header">
+            <div class="content-header-title">
+              <span class="section-tag">SQL Analytics</span>
+              <h2>Database Analytics</h2>
+              <p>Aggregations and structural calculations compiled via SQLite engine queries.</p>
+            </div>
+          </div>
+
+          <div class="grid-6x" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+            
+            <!-- Card 1 -->
+            <div class="card">
+              <div class="stat-card">
+                <div class="stat-info">
+                  <div class="stat-label">Total Amount Volume</div>
+                  <div class="stat-value" style="font-size: 1.5rem;">$46.11 B</div>
+                  <div class="stat-desc">Processed cumulative USD</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card">
+              <div class="stat-card">
+                <div class="stat-info">
+                  <div class="stat-label">Average Amount</div>
+                  <div class="stat-value" style="font-size: 1.5rem;">$7,247.90</div>
+                  <div class="stat-desc">Per-transaction volume</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card" style="border-left: 3px solid var(--secondary-color);">
+              <div class="stat-card">
+                <div class="stat-info">
+                  <div class="stat-label">Maximum Transaction</div>
+                  <div class="stat-value" style="font-size: 1.5rem; color: var(--secondary-color);">$92.45 M</div>
+                  <div class="stat-desc">Highest single transfer</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="card">
+              <div class="stat-card">
+                <div class="stat-info">
+                  <div class="stat-label">Minimum Transaction</div>
+                  <div class="stat-value" style="font-size: 1.5rem;">$0.00</div>
+                  <div class="stat-desc">Lowest processed transfer</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Charts containers -->
+          <div class="chart-grid">
+            
+            <!-- Chart 1 -->
+            <div class="card chart-card">
+              <div class="chart-title-box">
+                <h3>Transaction Type Distribution</h3>
+                <i class="fa-solid fa-expand"></i>
+              </div>
+              <div class="chart-img-container">
+                <img src="output/transaction_types.png" alt="Transaction Types Distribution">
+                <div class="chart-fallback-placeholder">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <span>output/transaction_types.png</span>
+                  <p>Distribution layout showing transaction types like CASH_OUT, PAYMENT, TRANSFER, CASH_IN, and DEBIT.</p>
+                </div>
+              </div>
+              <div class="chart-desc">
+                Visual representation of how various transaction types stack up across the 6.36 million records database.
+              </div>
+            </div>
+
+            <!-- Chart 2 -->
+            <div class="card chart-card">
+              <div class="chart-title-box">
+                <h3>Fraud vs Normal Transactions</h3>
+                <i class="fa-solid fa-expand"></i>
+              </div>
+              <div class="chart-img-container">
+                <img src="output/fraud_vs_normal.png" alt="Fraud vs Normal Transactions">
+                <div class="chart-fallback-placeholder">
+                  <i class="fa-solid fa-chart-bar"></i>
+                  <span>output/fraud_vs_normal.png</span>
+                  <p>Comparison visualization of normal transactions compared to the rare 8,213 fraud instances.</p>
+                </div>
+              </div>
+              <div class="chart-desc">
+                Logarithmic or dual-axis plot illustrating the extreme class imbalance in fraud detection datasets.
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- SECTION 4: FRAUD DETECTION -->
+        <section id="section-detection" class="tab-content">
+          <div class="content-header">
+            <div class="content-header-title">
+              <span class="section-tag">Security Logs</span>
+              <h2>Fraud Detection Engine</h2>
+              <p>Conditional rulesets implemented to parse transactions and isolate financial anomalies.</p>
+            </div>
+          </div>
+
+          <!-- Fraud Rule Cards -->
+          <div class="rule-grid">
+            
+            <!-- Rule 1 -->
+            <div class="rule-card rule-warning">
+              <div class="rule-header">
+                <div class="rule-icon bg-warning">
+                  <i class="fa-solid fa-scale-unbalanced"></i>
+                </div>
+                <div class="rule-name">High Value Intercept</div>
+              </div>
+              <span class="rule-code">amount > 200000</span>
+              <p class="rule-desc">
+                Flags any transfer exceeding $200,000 USD. Heavy transaction volumes warrant manual supervisor review.
+              </p>
+            </div>
+
+            <!-- Rule 2 -->
+            <div class="rule-card rule-high-risk">
+              <div class="rule-header">
+                <div class="rule-icon bg-danger">
+                  <i class="fa-solid fa-user-slash"></i>
+                </div>
+                <div class="rule-name">Empty Source Origin</div>
+              </div>
+              <span class="rule-code">oldbalanceOrg == 0</span>
+              <p class="rule-desc">
+                Flags transfers initiated from origin bank accounts that start with a zero-dollar balance. Common in laundering.
+              </p>
+            </div>
+
+            <!-- Rule 3 -->
+            <div class="rule-card rule-high-risk">
+              <div class="rule-header">
+                <div class="rule-icon bg-danger">
+                  <i class="fa-solid fa-circle-minus"></i>
+                </div>
+                <div class="rule-name">Sender Balance Cleared</div>
+              </div>
+              <span class="rule-code">newbalanceOrig == 0</span>
+              <p class="rule-desc">
+                Flags transactions that drain the entirety of the sender account. Fraudsters aim to extract maximum value.
+              </p>
+            </div>
+
+            <!-- Rule 4 -->
+            <div class="rule-card rule-secondary">
+              <div class="rule-header">
+                <div class="rule-icon bg-secondary">
+                  <i class="fa-solid fa-receipt"></i>
+                </div>
+                <div class="rule-name">High-Volume Cash-Out</div>
+              </div>
+              <span class="rule-code">type == CASH_OUT AND amount > 150000</span>
+              <p class="rule-desc">
+                Isolates large CASH_OUT operations above $150,000 USD. Cash out is the primary pathway to extract liquid funds.
+              </p>
+            </div>
+
+          </div>
+
+          <!-- Highlighted Fraud Transactions Table -->
+          <div class="card">
+            <div class="card-header-flex">
+              <h3 class="card-title"><i class="fa-solid fa-shield-virus"></i> High-Risk Anomalous Log Entries</h3>
+              <span class="table-badge badge-fraud"><i class="fa-solid fa-triangle-exclamation"></i> INTERCEPTED TRANSACTION STREAM</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px;">
+              Below are sample transactional items flags flagged as positive fraud markers (`isFraud = 1`):
+            </p>
+            <div class="table-responsive">
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Amount</th>
+                    <th>Origin Account</th>
+                    <th>Old Balance (Orig)</th>
+                    <th>New Balance (Orig)</th>
+                    <th>Dest Account</th>
+                    <th>Fraud Flag</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="row-fraud">
+                    <td><span class="table-badge badge-type">TRANSFER</span></td>
+                    <td class="td-amount">$2,500,000.00</td>
+                    <td class="td-mono">C1093848122</td>
+                    <td class="td-amount">$2,500,000.00</td>
+                    <td class="td-amount">$0.00</td>
+                    <td class="td-mono">C998127384</td>
+                    <td><span class="table-badge badge-fraud"><i class="fa-solid fa-circle-exclamation"></i> Flagged</span></td>
+                  </tr>
+                  <tr class="row-fraud">
+                    <td><span class="table-badge badge-type">CASH_OUT</span></td>
+                    <td class="td-amount">$2,500,000.00</td>
+                    <td class="td-mono">C1827394857</td>
+                    <td class="td-amount">$2,500,000.00</td>
+                    <td class="td-amount">$0.00</td>
+                    <td class="td-mono">C283749501</td>
+                    <td><span class="table-badge badge-fraud"><i class="fa-solid fa-circle-exclamation"></i> Flagged</span></td>
+                  </tr>
+                  <tr class="row-fraud">
+                    <td><span class="table-badge badge-type">TRANSFER</span></td>
+                    <td class="td-amount">$181,000.00</td>
+                    <td class="td-mono">C1305486145</td>
+                    <td class="td-amount">$181,000.00</td>
+                    <td class="td-amount">$0.00</td>
+                    <td class="td-mono">C553264065</td>
+                    <td><span class="table-badge badge-fraud"><i class="fa-solid fa-circle-exclamation"></i> Flagged</span></td>
+                  </tr>
+                  <tr class="row-fraud">
+                    <td><span class="table-badge badge-type">CASH_OUT</span></td>
+                    <td class="td-amount">$181,000.00</td>
+                    <td class="td-mono">C840083671</td>
+                    <td class="td-amount">$181,000.00</td>
+                    <td class="td-amount">$0.00</td>
+                    <td class="td-mono">C38997010</td>
+                    <td><span class="table-badge badge-fraud"><i class="fa-solid fa-circle-exclamation"></i> Flagged</span></td>
+                  </tr>
+                  <tr class="row-fraud">
+                    <td><span class="table-badge badge-type">TRANSFER</span></td>
+                    <td class="td-amount">$340,500.00</td>
+                    <td class="td-mono">C992817482</td>
+                    <td class="td-amount">$340,500.00</td>
+                    <td class="td-amount">$0.00</td>
+                    <td class="td-mono">C448273918</td>
+                    <td><span class="table-badge badge-fraud"><i class="fa-solid fa-circle-exclamation"></i> Flagged</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 5: REPORTS -->
+        <section id="section-reports" class="tab-content">
+          <div class="content-header">
+            <div class="content-header-title">
+              <span class="section-tag">Executive Summary</span>
+              <h2>Fraud Reports</h2>
+              <p>Generated textual analytical reports output from the SQLite detection script.</p>
+            </div>
+          </div>
+
+          <div class="report-container">
+            <div class="card-header-flex" style="margin-bottom: 20px;">
+              <h3 class="card-title"><i class="fa-solid fa-print"></i> reports.txt Preview</h3>
+              <div class="report-action-bar" style="margin-top: 0;">
+                <button class="btn btn-outline" onclick="window.print()"><i class="fa-solid fa-print"></i> Print</button>
+                <a href="output/reports.txt" class="btn btn-primary" download><i class="fa-solid fa-download"></i> Download TXT</a>
+              </div>
+            </div>
+
+            <!-- Monospace styled paper report -->
+            <div class="report-paper">
+<div class="report-header-text">============================================================
+              BANKING FRAUD REPORT
+============================================================</div>
+<div class="report-metadata"><span>Generated: 2026-06-17 19:50:44
+Source File: data/transactions.csv</span><span>Database: database/banking.db
+Engine: SQLite 3.x</span></div>
+<div class="report-line"><span class="label">Total Transactions Analyzed:</span><span class="val">6,362,620</span></div><div class="report-line"><span class="label">Fraud Transactions Flagged:</span><span class="val report-badge-danger">8,213</span></div><div class="report-line"><span class="label">Overall Fraud Percentage:</span><span class="val report-badge-danger">0.13%</span></div><div class="report-line"><span class="label">Most Common Fraud Type:</span><span class="val">TRANSFER</span></div><div class="report-line"><span class="label">Primary Cash-Out Extraction Count:</span><span class="val">4,116 cases</span></div>
+------------------------------------------------------------
+SUMMARY FINDINGS:
+- The detection engine isolates illegal transfers that empty source bank balances completely.
+- 100% of detected fraud transactions occurred under TRANSFER and CASH_OUT types.
+- High value limits are active above $200,000.
+
+STATUS: <span class="report-badge-danger">CRITICAL WARNING</span> - REVIEW REQUIRED FOR 8,213 ACCOUNTS.
+============================================================</div>
+          </div>
+        </section>
+
+        <!-- SECTION 6: VISUALIZATIONS -->
+        <section id="section-visualizations" class="tab-content">
+          <div class="content-header">
+            <div class="content-header-title">
+              <span class="section-tag">Charts</span>
+              <h2>Visual Analysis</h2>
+              <p>Statistical summaries generated via Matplotlib plotting libraries.</p>
+            </div>
+          </div>
+
+          <!-- 2x2 Image Grid -->
+          <div class="chart-grid">
+            
+            <!-- Chart 1: Type Distribution -->
+            <div class="card chart-card">
+              <div class="chart-title-box">
+                <h3>Transaction Type Distribution</h3>
+                <i class="fa-solid fa-download"></i>
+              </div>
+              <div class="chart-img-container">
+                <img src="output/transaction_types.png" alt="Transaction Type Distribution">
+                <div class="chart-fallback-placeholder">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <span>output/transaction_types.png</span>
+                  <p>Generates type distribution frequency bars/slices.</p>
+                </div>
+              </div>
+              <div class="chart-desc">
+                Shows the volume counts of PAYMENT, TRANSFER, CASH_OUT, DEBIT, and CASH_IN transaction classes.
+              </div>
+            </div>
+
+            <!-- Chart 2: Fraud vs Normal -->
+            <div class="card chart-card">
+              <div class="chart-title-box">
+                <h3>Fraud vs Normal Transactions</h3>
+                <i class="fa-solid fa-download"></i>
+              </div>
+              <div class="chart-img-container">
+                <img src="output/fraud_vs_normal.png" alt="Fraud vs Normal Transactions">
+                <div class="chart-fallback-placeholder">
+                  <i class="fa-solid fa-chart-bar"></i>
+                  <span>output/fraud_vs_normal.png</span>
+                  <p>Illustrates count discrepancy of clean vs fraudulent items.</p>
+                </div>
+              </div>
+              <div class="chart-desc">
+                Visualizes dataset imbalance, showing standard operations versus flagged entries.
+              </div>
+            </div>
+
+            <!-- Chart 3: Amount Distribution -->
+            <div class="card chart-card">
+              <div class="chart-title-box">
+                <h3>Amount Distribution</h3>
+                <i class="fa-solid fa-download"></i>
+              </div>
+              <div class="chart-img-container">
+                <img src="output/amount_distribution.png" alt="Amount Distribution">
+                <div class="chart-fallback-placeholder">
+                  <i class="fa-solid fa-chart-area"></i>
+                  <span>output/amount_distribution.png</span>
+                  <p>Shows values distribution of transaction quantities.</p>
+                </div>
+              </div>
+              <div class="chart-desc">
+                Identifies density ranges of monetary sums processed by the system.
+              </div>
+            </div>
+
+            <!-- Chart 4: Fraud by Type -->
+            <div class="card chart-card">
+              <div class="chart-title-box">
+                <h3>Fraud By Transaction Type</h3>
+                <i class="fa-solid fa-download"></i>
+              </div>
+              <div class="chart-img-container">
+                <img src="output/fraud_by_type.png" alt="Fraud by Transaction Type">
+                <div class="chart-fallback-placeholder">
+                  <i class="fa-solid fa-square-poll-vertical"></i>
+                  <span>output/fraud_by_type.png</span>
+                  <p>Categorical display isolating fraud rates of specific transaction channels.</p>
+                </div>
+              </div>
+              <div class="chart-desc">
+                Reveals the main channels targeted by fraud activities (primarily TRANSFER and CASH_OUT).
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- SECTION 7: WORKFLOW -->
+        <section id="section-workflow" class="tab-content">
+          <div class="content-header">
+            <div class="content-header-title">
+              <span class="section-tag">Pipeline</span>
+              <h2>Data Processing Workflow</h2>
+              <p>System timeline pipeline detailing step-by-step logic from raw data ingestion to visualization outputs.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="workflow-timeline">
+              
+              <!-- Step 1 -->
+              <div class="workflow-step">
+                <div class="workflow-num">01</div>
+                <div class="workflow-card">
+                  <div class="workflow-card-left">
+                    <div class="workflow-card-icon"><i class="fa-solid fa-file-csv"></i></div>
+                    <div class="workflow-card-text">
+                      <h4>Raw CSV Dataset</h4>
+                      <p>Initial database file input from <code>data/transactions.csv</code> containing raw transaction metrics.</p>
+                    </div>
+                  </div>
+                  <span class="workflow-tech-badge">transactions.csv</span>
+                </div>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="workflow-step">
+                <div class="workflow-num">02</div>
+                <div class="workflow-card">
+                  <div class="workflow-card-left">
+                    <div class="workflow-card-icon"><i class="fa-solid fa-upload"></i></div>
+                    <div class="workflow-card-text">
+                      <h4>Data Loading Module</h4>
+                      <p>Python script parses the file into data structures via Pandas engine.</p>
+                    </div>
+                  </div>
+                  <span class="workflow-tech-badge">load_data.py</span>
+                </div>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="workflow-step">
+                <div class="workflow-num">03</div>
+                <div class="workflow-card">
+                  <div class="workflow-card-left">
+                    <div class="workflow-card-icon"><i class="fa-solid fa-broom"></i></div>
+                    <div class="workflow-card-text">
+                      <h4>Data Cleaning & Formatting</h4>
+                      <p>Removes duplicate inputs, formats data types, checks for null indices, and sanitizes strings.</p>
+                    </div>
+                  </div>
+                  <span class="workflow-tech-badge">clean_data.py</span>
+                </div>
+              </div>
+
+              <!-- Step 4 -->
+              <div class="workflow-step">
+                <div class="workflow-num">04</div>
+                <div class="workflow-card">
+                  <div class="workflow-card-left">
+                    <div class="workflow-card-icon"><i class="fa-solid fa-database"></i></div>
+                    <div class="workflow-card-text">
+                      <h4>SQLite Integration</h4>
+                      <p>Populates structured data tables into relational schema in <code>database/banking.db</code>.</p>
+                    </div>
+                  </div>
+                  <span class="workflow-tech-badge">database.py</span>
+                </div>
+              </div>
+
+              <!-- Step 5 -->
+              <div class="workflow-step">
+                <div class="workflow-num">05</div>
+                <div class="workflow-card">
+                  <div class="workflow-card-left">
+                    <div class="workflow-card-icon"><i class="fa-solid fa-calculator"></i></div>
+                    <div class="workflow-card-text">
+                      <h4>SQL Analytics Ingest</h4>
+                      <p>Aggregates overall financial transaction values, balances, averages, and volume maximums.</p>
+                    </div>
+                  </div>
+                  <span class="workflow-tech-badge">analytics.py</span>
+                </div>
+              </div>
+
+              <!-- Step 6 -->
+              <div class="workflow-step">
+                <div class="workflow-num">06</div>
+                <div class="workflow-card">
+                  <div class="workflow-card-left">
+                    <div class="workflow-card-icon"><i class="fa-solid fa-filter-circle-dollar"></i></div>
+                    <div class="workflow-card-text">
+                      <h4>Fraud Detection Evaluation</h4>
+                      <p>Applies conditional rules engines to transaction logs to flag anomalous transfers.</p>
+                    </div>
+                  </div>
+                  <span class="workflow-tech-badge">fraud_detection.py</span>
+                </div>
+              </div>
+
+              <!-- Step 7 -->
+              <div class="workflow-step">
+                <div class="workflow-num">07</div>
+                <div class="workflow-card">
+                  <div class="workflow-card-left">
+                    <div class="workflow-card-icon"><i class="fa-solid fa-file-shield"></i></div>
+                    <div class="workflow-card-text">
+                      <h4>Reports Compilation</h4>
+                      <p>Writes compiled fraud audit logs summary files to <code>output/reports.txt</code>.</p>
+                    </div>
+                  </div>
+                  <span class="workflow-tech-badge">output/reports.txt</span>
+                </div>
+              </div>
+
+              <!-- Step 8 -->
+              <div class="workflow-step">
+                <div class="workflow-num">08</div>
+                <div class="workflow-card">
+                  <div class="workflow-card-left">
+                    <div class="workflow-card-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                    <div class="workflow-card-text">
+                      <h4>Visualizations Output</h4>
+                      <p>Compiles charts using Matplotlib mapping type distribution, normal vs fraud ratios, and amount ranges.</p>
+                    </div>
+                  </div>
+                  <span class="workflow-tech-badge">visualization.py</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 8: ABOUT PROJECT -->
+        <section id="section-about" class="tab-content">
+          <div class="content-header">
+            <div class="content-header-title">
+              <span class="section-tag">Information</span>
+              <h2>About Project</h2>
+              <p>Technical details, developers, and context behind the Banking Fraud Detection System.</p>
+            </div>
+          </div>
+
+          <div class="about-grid">
+            <div class="card">
+              <h3 class="card-title" style="margin-bottom: 15px;"><i class="fa-solid fa-book"></i> Project Description</h3>
+              <div class="about-text">
+                <p>
+                  This system implements a comprehensive pipeline designed to identify fraudulent transactions within synthetic mobile banking logs. The project loads high-volume datasets from <code>transactions.csv</code>, performs extensive data cleaning and standardization, and loads the records into an optimized SQLite database.
+                </p>
+                <p>
+                  Once database records are structured, SQL queries parse statistics and aggregate transactions. The system applies a multi-layered detection rule logic (value thresholds, account balance checks, and transaction correlations) to isolate fraudulent items.
+                </p>
+                <p>
+                  Finally, audit logs are saved as reports, and descriptive matplotlib plots are exported to provide analysts with comprehensive visual insight into systemic vulnerabilities.
+                </p>
+              </div>
+
+              <h3 class="card-title" style="margin: 25px 0 15px 0;"><i class="fa-solid fa-cubes"></i> Technologies Used</h3>
+              <div class="tech-grid">
+                <div class="tech-item python">
+                  <i class="fa-brands fa-python"></i>
+                  <span>Python</span>
+                </div>
+                <div class="tech-item pandas">
+                  <i class="fa-solid fa-table-cells"></i>
+                  <span>Pandas</span>
+                </div>
+                <div class="tech-item numpy">
+                  <i class="fa-solid fa-calculator"></i>
+                  <span>NumPy</span>
+                </div>
+                <div class="tech-item sqlite">
+                  <i class="fa-solid fa-database"></i>
+                  <span>SQLite 3</span>
+                </div>
+                <div class="tech-item matplotlib">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Matplotlib</span>
+                </div>
+                <div class="tech-item html">
+                  <i class="fa-brands fa-html5"></i>
+                  <span>HTML5</span>
+                </div>
+                <div class="tech-item css">
+                  <i class="fa-brands fa-css3-alt"></i>
+                  <span>CSS3</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-stats-panel">
+              <div>
+                <div class="panel-title">System Status</div>
+                
+                <div class="panel-metric">
+                  <span class="panel-label">Pipeline Ingestion</span>
+                  <span class="panel-value" style="color: var(--success-color);"><i class="fa-solid fa-circle-check"></i> Connected</span>
+                </div>
+
+                <div class="panel-metric">
+                  <span class="panel-label">Database Status</span>
+                  <span class="panel-value" style="color: var(--success-color);"><i class="fa-solid fa-circle-check"></i> Connected</span>
+                </div>
+
+                <div class="panel-metric">
+                  <span class="panel-label">Code Files</span>
+                  <span class="panel-value">7 modules</span>
+                </div>
+
+                <div class="panel-metric">
+                  <span class="panel-label">Primary Entry</span>
+                  <span class="panel-value" style="font-size: 1.1rem; font-family: var(--font-mono);">main.py</span>
+                </div>
+              </div>
+
+              <div class="panel-footer-logo">
+                <i class="fa-solid fa-shield-halved"></i> FRAUDRECON
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Search Results Overlay Modal -->
+  <div id="search-modal" class="search-modal-container">
+    <div class="search-modal-card">
+      <div class="search-modal-header">
+        <div class="search-modal-title-area">
+          <i class="fa-solid fa-magnifying-glass" style="color: var(--secondary-color);"></i>
+          <h3>Search Results</h3>
+          <span id="search-modal-query-badge" style="display: none;"></span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 0.72rem; color: var(--text-muted); background: var(--bg-color); border: 1px solid var(--border-color); padding: 2px 6px; border-radius: 4px; font-family: var(--font-sans);">ESC to dismiss</span>
+          <button id="search-modal-close" class="search-modal-close-btn" aria-label="Close search">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+      <div class="search-modal-filters">
+        <div class="filter-group">
+          <label for="search-filter-type">Type:</label>
+          <select id="search-filter-type">
+            <option value="ALL">All Types</option>
+            <option value="TRANSFER">TRANSFER</option>
+            <option value="CASH_OUT">CASH_OUT</option>
+            <option value="PAYMENT">PAYMENT</option>
+            <option value="CASH_IN">CASH_IN</option>
+            <option value="DEBIT">DEBIT</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="search-filter-status">Status:</label>
+          <select id="search-filter-status">
+            <option value="ALL">All Statuses</option>
+            <option value="FRAUD">Fraud Only</option>
+            <option value="NORMAL">Normal Only</option>
+          </select>
+        </div>
+        <div id="search-results-count" class="search-modal-count-status">
+          Found 0 results
+        </div>
+      </div>
+      <div id="search-modal-body" class="search-modal-body">
+        <div class="search-empty-state">
+          <i class="fa-solid fa-keyboard"></i>
+          <h4>Start Typing...</h4>
+          <p>Search for account IDs (e.g. C109), transaction types (e.g. TRANSFER), or specific monetary values.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('dashboard-search-input');
+      const searchModal = document.getElementById('search-modal');
+      const searchClose = document.getElementById('search-modal-close');
+      const searchResultsBody = document.getElementById('search-modal-body');
+      const searchBadge = document.getElementById('search-modal-query-badge');
+      const searchCount = document.getElementById('search-results-count');
+      const filterType = document.getElementById('search-filter-type');
+      const filterStatus = document.getElementById('search-filter-status');
+
+      let debounceTimer = null;
+      let rawSearchResults = []; // Holds the fetched results from backend
+
+      // Helper: Format amount as USD
+      function formatUSD(amount) {
+        return new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }).format(amount);
+      }
+
+      // Helper: Escape regex special chars
+      function escapeRegExp(string) {
+        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      }
+
+      // Helper: Highlight matching text
+      function highlightMatch(text, query) {
+        if (!query) return text;
+        const escapedQuery = escapeRegExp(query);
+        const regex = new RegExp(`(${escapedQuery})`, 'gi');
+        return text.replace(regex, '<mark class="search-highlight">$1</mark>');
+      }
+
+      // Toggle modal visibility
+      function showModal() {
+        searchModal.classList.add('active');
+      }
+
+      function hideModal() {
+        searchModal.classList.remove('active');
+        searchInput.value = '';
+        rawSearchResults = [];
+        updateResultsView();
+      }
+
+      // Listen for Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && searchModal.classList.contains('active')) {
+          hideModal();
+          searchInput.blur();
+        }
+      });
+
+      // Close modal on click button or background overlay
+      searchClose.addEventListener('click', hideModal);
+      searchModal.addEventListener('click', (e) => {
+        if (e.target === searchModal) {
+          hideModal();
+        }
+      });
+
+      // Handle input typing
+      searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.trim();
+        
+        if (debounceTimer) clearTimeout(debounceTimer);
+
+        if (!query || query.length < 2) {
+          rawSearchResults = [];
+          if (!query) {
+            hideModal();
+          } else {
+            showModal();
+            searchBadge.textContent = `"${query}"`;
+            searchBadge.style.display = 'inline-block';
+            searchResultsBody.innerHTML = `
+              <div class="search-empty-state">
+                <i class="fa-solid fa-keyboard"></i>
+                <h4>Query too short</h4>
+                <p>Please type at least 2 characters to search.</p>
+              </div>
+            `;
+            searchCount.textContent = 'Enter more characters';
+          }
+          return;
+        }
+
+        showModal();
+        searchBadge.textContent = `"${query}"`;
+        searchBadge.style.display = 'inline-block';
+        
+        // Show loading state
+        searchResultsBody.innerHTML = `
+          <div class="search-loader">
+            <i class="fa-solid fa-spinner"></i>
+            <span>Searching SQLite database...</span>
+          </div>
+        `;
+        searchCount.textContent = 'Searching...';
+
+        // Debounce API call
+        debounceTimer = setTimeout(() => {
+          fetchSearchResults(query);
+        }, 250);
+      });
+
+      // Self-contained static transaction data for client-side search fallback (no backend server needed)
+      const STATIC_DATA = [
+        // Preview rows from Dataset Overview
+        { step: 1, type: "PAYMENT", amount: 9839.64, nameOrig: "C1231006815", oldbalanceOrg: 170136.00, newbalanceOrig: 160296.36, nameDest: "M1979787155", oldbalanceDest: 0.00, newbalanceDest: 0.00, isFraud: 0 },
+        { step: 1, type: "PAYMENT", amount: 1864.28, nameOrig: "C1666544295", oldbalanceOrg: 21249.00, newbalanceOrig: 19384.72, nameDest: "M2044282225", oldbalanceDest: 0.00, newbalanceDest: 0.00, isFraud: 0 },
+        { step: 1, type: "TRANSFER", amount: 181.00, nameOrig: "C1305486145", oldbalanceOrg: 181.00, newbalanceOrig: 0.00, nameDest: "C553264065", oldbalanceDest: 0.00, newbalanceDest: 0.00, isFraud: 1 },
+        { step: 1, type: "CASH_OUT", amount: 181.00, nameOrig: "C840083671", oldbalanceOrg: 181.00, newbalanceOrig: 0.00, nameDest: "C38997010", oldbalanceDest: 21182.00, newbalanceDest: 0.00, isFraud: 1 },
+        { step: 1, type: "PAYMENT", amount: 11668.14, nameOrig: "C2048537720", oldbalanceOrg: 41554.00, newbalanceOrig: 29885.86, nameDest: "M1230701703", oldbalanceDest: 0.00, newbalanceDest: 0.00, isFraud: 0 },
+        
+        // High-Risk Alerts / Anomalies
+        { step: 1, type: "TRANSFER", amount: 2500000.00, nameOrig: "C1093848122", oldbalanceOrg: 2500000.00, newbalanceOrig: 0.00, nameDest: "C998127384", oldbalanceDest: 0.00, newbalanceDest: 0.00, isFraud: 1 },
+        { step: 1, type: "CASH_OUT", amount: 2500000.00, nameOrig: "C1827394857", oldbalanceOrg: 2500000.00, newbalanceOrig: 0.00, nameDest: "C283749501", oldbalanceDest: 0.00, newbalanceDest: 0.00, isFraud: 1 },
+        { step: 1, type: "TRANSFER", amount: 340500.00, nameOrig: "C992817482", oldbalanceOrg: 340500.00, newbalanceOrig: 0.00, nameDest: "C448273918", oldbalanceDest: 0.00, newbalanceDest: 0.00, isFraud: 1 },
+
+        // Additional representative data (Normal & Fraud across various transaction types)
+        { step: 2, type: "CASH_IN", amount: 480112.50, nameOrig: "C1123491290", oldbalanceOrg: 10000.00, newbalanceOrig: 490112.50, nameDest: "C993812833", oldbalanceDest: 800000.00, newbalanceDest: 319887.50, isFraud: 0 },
+        { step: 2, type: "DEBIT", amount: 2450.75, nameOrig: "C2019283741", oldbalanceOrg: 5490.00, newbalanceOrig: 3039.25, nameDest: "C1029384756", oldbalanceDest: 12000.00, newbalanceDest: 14450.75, isFraud: 0 },
+        { step: 3, type: "TRANSFER", amount: 650000.00, nameOrig: "C553819283", oldbalanceOrg: 650000.00, newbalanceOrig: 0.00, nameDest: "C129384758", oldbalanceDest: 0.00, newbalanceDest: 0.00, isFraud: 1 },
+        { step: 3, type: "CASH_OUT", amount: 650000.00, nameOrig: "C129384758", oldbalanceOrg: 650000.00, newbalanceOrig: 0.00, nameDest: "C998273841", oldbalanceDest: 15000.00, newbalanceDest: 665000.00, isFraud: 1 },
+        { step: 4, type: "CASH_IN", amount: 154300.20, nameOrig: "C882736192", oldbalanceOrg: 500.00, newbalanceOrig: 154800.20, nameDest: "C392817364", oldbalanceDest: 450000.00, newbalanceDest: 295699.80, isFraud: 0 },
+        { step: 5, type: "PAYMENT", amount: 4320.15, nameOrig: "C992817462", oldbalanceOrg: 8900.00, newbalanceOrig: 4579.85, nameDest: "M392817263", oldbalanceDest: 0.00, newbalanceDest: 0.00, isFraud: 0 },
+        { step: 5, type: "TRANSFER", amount: 1250000.00, nameOrig: "C776251928", oldbalanceOrg: 1250000.00, newbalanceOrig: 0.00, nameDest: "C382910293", oldbalanceDest: 0.00, newbalanceDest: 0.00, isFraud: 1 },
+        { step: 6, type: "DEBIT", amount: 120.45, nameOrig: "C1029381273", oldbalanceOrg: 4300.00, newbalanceOrig: 4179.55, nameDest: "C883726152", oldbalanceDest: 24500.00, newbalanceDest: 24620.45, isFraud: 0 },
+        { step: 7, type: "CASH_OUT", amount: 310500.00, nameOrig: "C882736451", oldbalanceOrg: 0.00, newbalanceOrig: 0.00, nameDest: "C992817362", oldbalanceDest: 1200000.00, newbalanceDest: 1510500.00, isFraud: 0 },
+        { step: 8, type: "PAYMENT", amount: 890.30, nameOrig: "C1122334455", oldbalanceOrg: 1500.00, newbalanceOrig: 609.70, nameDest: "M998877665", oldbalanceDest: 0.00, newbalanceDest: 0.00, isFraud: 0 },
+        { step: 9, type: "TRANSFER", amount: 890000.00, nameOrig: "C3322114455", oldbalanceOrg: 890000.00, newbalanceOrig: 0.00, nameDest: "C5544332211", oldbalanceDest: 0.00, newbalanceDest: 0.00, isFraud: 1 },
+        { step: 10, type: "CASH_OUT", amount: 890000.00, nameOrig: "C5544332211", oldbalanceOrg: 890000.00, newbalanceOrig: 0.00, nameDest: "C8877665544", oldbalanceDest: 45000.00, newbalanceDest: 935000.00, isFraud: 1 },
+        { step: 11, type: "CASH_IN", amount: 230000.00, nameOrig: "C7766554433", oldbalanceOrg: 12000.00, newbalanceOrig: 242000.00, nameDest: "C9988776655", oldbalanceDest: 150000.00, newbalanceDest: 0.00, isFraud: 0 },
+        { step: 12, type: "PAYMENT", amount: 15400.00, nameOrig: "C2233445566", oldbalanceOrg: 65000.00, newbalanceOrig: 49600.00, nameDest: "M1122334455", oldbalanceDest: 0.00, newbalanceDest: 0.00, isFraud: 0 },
+        { step: 13, type: "DEBIT", amount: 3450.00, nameOrig: "C4455667788", oldbalanceOrg: 8900.00, newbalanceOrig: 5450.00, nameDest: "C9988771122", oldbalanceDest: 45000.00, newbalanceDest: 48450.00, isFraud: 0 },
+        { step: 14, type: "TRANSFER", amount: 150000.00, nameOrig: "C6677889900", oldbalanceOrg: 150000.00, newbalanceOrig: 0.00, nameDest: "C1122334455", oldbalanceDest: 0.00, newbalanceDest: 0.00, isFraud: 1 },
+        { step: 15, type: "CASH_OUT", amount: 150000.00, nameOrig: "C1122334455", oldbalanceOrg: 150000.00, newbalanceOrig: 0.00, nameDest: "C5566778899", oldbalanceDest: 20000.00, newbalanceDest: 170000.00, isFraud: 1 }
+      ];
+
+      function searchStaticData(query) {
+        const qClean = query.toUpperCase();
+        return STATIC_DATA.filter(item => {
+          return (item.nameOrig || '').toUpperCase().includes(qClean) ||
+                 (item.nameDest || '').toUpperCase().includes(qClean) ||
+                 (item.type || '').toUpperCase().includes(qClean) ||
+                 String(item.amount || '').includes(qClean);
+        });
+      }
+
+      // API fetch call
+      async function fetchSearchResults(query) {
+        try {
+          const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
+          if (!response.ok) {
+            throw new Error(`Server returned status: ${response.status}`);
+          }
+          const data = await response.json();
+          if (data.error) {
+            throw new Error(data.error);
+          }
+          rawSearchResults = data.results || [];
+          updateResultsView(query);
+        } catch (error) {
+          console.warn('Backend search failed, falling back to local static dataset.', error);
+          rawSearchResults = searchStaticData(query);
+          updateResultsView(query);
+          
+          // Append a small notice that we are in local offline mode
+          const offlineBadge = document.createElement('span');
+          offlineBadge.style.fontSize = '0.7rem';
+          offlineBadge.style.color = 'var(--text-muted)';
+          offlineBadge.style.marginLeft = '8px';
+          offlineBadge.style.background = 'var(--bg-color)';
+          offlineBadge.style.border = '1px solid var(--border-color)';
+          offlineBadge.style.padding = '2px 6px';
+          offlineBadge.style.borderRadius = '4px';
+          offlineBadge.textContent = 'Offline Demo Mode';
+          
+          searchCount.appendChild(offlineBadge);
+        }
+      }
+
+      // Filter change listeners
+      filterType.addEventListener('change', () => updateResultsView(searchInput.value.trim()));
+      filterStatus.addEventListener('change', () => updateResultsView(searchInput.value.trim()));
+
+      // Render results to DOM with client-side filters applied
+      function updateResultsView(query = '') {
+        if (!searchModal.classList.contains('active')) return;
+        if (rawSearchResults.length === 0 && searchInput.value.trim().length >= 2) {
+          searchResultsBody.innerHTML = `
+            <div class="search-empty-state">
+              <i class="fa-solid fa-magnifying-glass-slash"></i>
+              <h4>No matches found</h4>
+              <p>No transactions match your search query in nameOrig, nameDest, or type.</p>
+            </div>
+          `;
+          searchCount.textContent = 'Found 0 results';
+          return;
+        }
+
+        const selectedType = filterType.value;
+        const selectedStatus = filterStatus.value;
+
+        // Apply filters
+        const filteredResults = rawSearchResults.filter(item => {
+          const typeMatch = selectedType === 'ALL' || item.type === selectedType;
+          const statusMatch = selectedStatus === 'ALL' || 
+            (selectedStatus === 'FRAUD' && item.isFraud === 1) ||
+            (selectedStatus === 'NORMAL' && item.isFraud === 0);
+          return typeMatch && statusMatch;
+        });
+
+        searchCount.textContent = `Showing ${filteredResults.length} of ${rawSearchResults.length} matches`;
+
+        if (filteredResults.length === 0) {
+          searchResultsBody.innerHTML = `
+            <div class="search-empty-state">
+              <i class="fa-solid fa-filter"></i>
+              <h4>No filtered matches</h4>
+              <p>Try resetting the Type and Status filters.</p>
+            </div>
+          `;
+          return;
+        }
+
+        // Render table
+        let tableHTML = `
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Step</th>
+                  <th>Type</th>
+                  <th>Amount</th>
+                  <th>Origin Account</th>
+                  <th>Dest Account</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+        `;
+
+        filteredResults.forEach(item => {
+          const rowClass = item.isFraud === 1 ? 'row-fraud' : '';
+          const statusBadge = item.isFraud === 1 
+            ? `<span class="table-badge badge-fraud"><i class="fa-solid fa-triangle-exclamation"></i> Fraud</span>`
+            : `<span class="table-badge badge-normal"><i class="fa-solid fa-circle-check"></i> Normal</span>`;
+
+          tableHTML += `
+            <tr class="${rowClass}">
+              <td class="td-mono">${item.step}</td>
+              <td><span class="table-badge badge-type">${highlightMatch(item.type, query)}</span></td>
+              <td class="td-amount">${formatUSD(item.amount)}</td>
+              <td class="td-mono">${highlightMatch(item.nameOrig, query)}</td>
+              <td class="td-mono">${highlightMatch(item.nameDest, query)}</td>
+              <td>${statusBadge}</td>
+            </tr>
+          `;
+        });
+
+        tableHTML += `
+              </tbody>
+            </table>
+          </div>
+        `;
+
+        searchResultsBody.innerHTML = tableHTML;
+      }
+    });
+  </script>
+</body>
+</html>
